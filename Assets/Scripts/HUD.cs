@@ -4,49 +4,47 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.TextCore;
-public class HUD : MonoBehaviour
+using Aircraft;
+namespace Player
 {
-   
-    public JetFighter player;
-    public Text Throttle;
-    public Text G;
-    public Text Speed;
-    public Text AOA;
-    public Transform VelocityVector;
-    void Start()
+    public class HUD : MonoBehaviour
     {
-        if(player == null)
-        {
-            player = GetComponent<JetFighter>();
-        }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (player == null)
-        {
-            return;
-        }
-        
-            G.text = $"{player.Gforce:0.0:}G";
-            Throttle.text = $"THR:{player.indicatedThrottle * 100:0.0}%";
+        [SerializeField] private JetController jet;
+        [SerializeField] private Text Throttle;
+        [SerializeField] private Text G;
+        [SerializeField] private Text Speed;
+        [SerializeField] private Text AOA;
+        [SerializeField] private Transform VelocityVector;
+    
 
-        if ((player.speed * MathStuff.ConvertToKPH() > 1200))
+       
+        void Update()
         {
-            Speed.text = $"SPD:{(player.speed * MathStuff.ConvertToKPH()) * 0.000809848f:0.0}Mach";
-        }
-        else
-        {
-            Speed.text = $"SPD:{player.speed * MathStuff.ConvertToKPH():0.0}KMH";
-        }
-            AOA.text = $"{player.aoa:0.0f}Pitch";
-            var velocityPos = Camera.main.WorldToScreenPoint(player.transform.position + player.velocity * 3500f);
-           
-           velocityPos.z = Mathf.Clamp(velocityPos.z, -200f, 200f);
+            if (jet == null)
+            {
+                return;
+            }
+
+            G.text = $"{jet.GForce:0.0:}G";
+            Throttle.text = $"THR:{jet.indicatedThrottle()*100:0.0}%";
+
+            if ((jet.Speed * MathStuff.ConvertToKPH() > 1200))
+            {
+                Speed.text = $"SPD:{(jet.Speed * MathStuff.ConvertToKPH()) * 0.000809848f:0.0}Mach";
+            }
+            else
+            {
+                Speed.text = $"SPD:{jet.Speed * MathStuff.ConvertToKPH():0.0}KMH";
+            }
+            AOA.text = $"{jet.AOA:0.0f}Pitch";
+            var velocityPos = Camera.main.WorldToScreenPoint(jet.transform.position + jet.Velocity * 3500f);
+
+            velocityPos.z = Mathf.Clamp(velocityPos.z, -200f, 200f);
 
 
-        VelocityVector.position = SmoothDamp.Move(VelocityVector.position, velocityPos,5, Time.deltaTime);
-        
+            VelocityVector.position = SmoothDamp.Move(VelocityVector.position, velocityPos, 5, Time.deltaTime);
+
+        }
     }
 }

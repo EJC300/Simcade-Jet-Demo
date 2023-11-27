@@ -30,9 +30,9 @@ public static class PlayerInput
     {
         return Input.GetAxis("Horizontal");
     }
-   /* public static float RawYaw()
+    public static float RawYaw()
     {
-        return Input.GetAxis("Vertical");
+        return Input.GetAxis("Yaw");
     }
-   */
+   
 }

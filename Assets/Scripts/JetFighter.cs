@@ -9,6 +9,7 @@ using UnityEditorInternal;
 using UnityEngine;
 
 
+/*
 public class GForceLookUpTable
 {
     public float[] limit =
@@ -111,10 +112,10 @@ public class JetFighter : MonoBehaviour
      * G Limited Turns that limit pitch rate based on g-Force
      * Stall : When it hits below stall speed the aircraft points its nose down unless its speed surpasses stall speed
      * HUD : Seperate HUD class that tracks pitch rate,throttle,velocity vector, g force and speed
-     */
+     
 
 
-    /*
+    
      * Checklist:
      Aircraft-
      1 No Physics Engine - done
@@ -144,7 +145,7 @@ public class JetFighter : MonoBehaviour
      Fixes-
      Fix the dang aerial drag and induced drag effects
      Add Yaw
-     */
+     *
 
     //When it is done I am going to refactor all this
     public GForceLookUpTable limits;
@@ -447,3 +448,4 @@ public class JetFighter : MonoBehaviour
         
     }
 }
+  */
