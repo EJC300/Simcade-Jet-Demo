@@ -53,14 +53,15 @@ namespace Aircraft
             {
                 flapsToggle = false;
             }
-            if (!gearToggle && gears)
+           /* if (!gearToggle && gears)
             {
                 gearToggle = true;
             }
            else if (gearToggle && gears)
             {
                 gearToggle = false;
-            }
+            }*/ 
+
             if (!speedBrakeToggle && speedBrakes)
             {
                 speedBrakeToggle = true;
@@ -70,7 +71,7 @@ namespace Aircraft
                 speedBrakeToggle = false;
             }
             Jet.Flaps.UpdatePart(speedBrakeToggle);
-            Jet.LandingGear.UpdatePart(gearToggle);
+            //Jet.LandingGear.UpdatePart(gearToggle);
             Jet.SpeedBrakes.UpdatePart(speedBrakeToggle);
         }
 
@@ -188,14 +189,14 @@ namespace Aircraft
 
         private void FlightRotation()
         {
-           
-
-       
 
 
 
 
-         
+
+
+
+            var collisionRotation = Quaternion.FromToRotation(transform.position - hit.point ,transform.InverseTransformDirection( -hit.normal));
             var pitchRotation = Quaternion.AngleAxis(pitch, Vector3.right);
             var yawRotation = Quaternion.AngleAxis(yaw, Vector3.up);
             var rollRotation = Quaternion.AngleAxis(roll, Vector3.forward);
@@ -209,11 +210,38 @@ namespace Aircraft
             {
                 transform.localRotation *= pitchRotation * yawRotation * rollRotation;
             }
+           
+            if (collide)
+            {
+
+                //Quick and dirty collision rotation
+                transform.localRotation = Quaternion.Slerp(transform.localRotation,collisionRotation,25 * Time.deltaTime);
+            }
+
             if (isGrounded)
             {
                 transform.localRotation *= Jet.LandingGear.LookToWheelRotation();
             }
         }
+
+        #region Collision Detection
+        private RaycastHit hit;
+        private bool collide;
+        //This needs to be fixed does not work at to scale supersonic velocities
+        private void OnTriggerEnter(Collider other)
+        {
+            if (Physics.Raycast(transform.position, (hit.point - transform.position), out hit))
+            {
+                collide = true;
+             
+            }
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            collide = false;
+        }
+        #endregion
+
 
         #endregion
 

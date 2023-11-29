@@ -102,23 +102,23 @@ namespace Aircraft
          4 Linear Drag(Forward Drag) - done
          5 Linear Forces - done
          6 Gravity System - done
-         7 Drag based Extensions ( non physical) like flaps,landing gear and speedbrakes - done needs work
+         7 Drag based Extensions ( non physical) like flaps,landing gear and speedbrakes - done needs work-done
          8 Rotations with pitch roll and yaw - done -mostly
          9 Angle of Attack using this api call (Vector3.Angle(transform.forward,velocity))-done
          10 AOA effects inducedDrag - done
          11 when stall condition is met looktowards velocity which will be gravity - done
          12 GLimiter - done it works sorta
-         13 Landing Gear ground movement - oh dear god - done mostly, and works better than I thought!
+         13 Landing Gear ground movement - oh dear god - done mostly, and works better than I thought!-scrapped
          14 HUD - work on this before landing gear - done
-         15 Refactor- Put aircraft stats in a seperate class , use getter and setters plus properties
+         15 Refactor- Put aircraft stats in a seperate class , use getter and setters plus properties-done
          Simulation/World-
-         1 Origin Shift to deal with floating point errors
-         2 Use a terrain generated from height maps using a procedural mesh of course make spot for a runway in the heightmap
+         1 Origin Shift to deal with floating point errors - done
+         2 Generate simple hilly terrain to fly over - scrapped instead create infinite plane objects to fly over forever
          3 Setup a simple start & exit functionality complete with a howto use guide.
          Bonus-
          1 Polish the demo by adding an external chase camera
          2 Add some afterburner effect, turning wing tip trail effect
-         3 "Crash" effect by bouncing off the terrain and objects
+         3 "Crash" effect by bouncing off the terrain and objects - done
          4 Add some jet noises
          Fixes-
          Fix the dang aerial drag and induced drag effects

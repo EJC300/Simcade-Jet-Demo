@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         jet.AdjustThrottle(PlayerInput.RawThrottle());
-        jet.ControlJetOrientation(PlayerInput.RawPitch(),PlayerInput.RawYaw(),PlayerInput.RawRoll());
+        jet.ControlJetOrientation(PlayerInput.RawPitch(),PlayerInput.RawYaw(),-PlayerInput.RawRoll());
         jet.Extendables(PlayerInput.FlapsAndGearToggle(), PlayerInput.FlapsAndGearToggle(), PlayerInput.SpeedBreaksToggle());
     }
 }
